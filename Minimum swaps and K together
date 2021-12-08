@@ -1,0 +1,20 @@
+class Complete{
+    public static int minSwap (int arr[], int n, int k) {
+        int cntlegal = 0, max_cnt = 0;
+        for(int i=0;i<n;i++){
+            if(arr[i]<=k)
+            cntlegal++;
+        }
+        int cnt = 0;
+        for(int i=0;i<cntlegal;i++){
+            if(arr[i]<=k) cnt++;
+        }
+        max_cnt = Math.max(max_cnt,cnt);
+        for(int i=cntlegal;i<n;i++){
+            if(arr[i-cntlegal]<=k) cnt--;
+            if(arr[i]<=k) cnt++;
+            max_cnt = Math.max(max_cnt,cnt);
+        }
+        return (cntlegal - max_cnt);
+    }
+    
